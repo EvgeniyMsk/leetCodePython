@@ -9,7 +9,7 @@ class Solution:
         output = []
         for i in range(n - 1, -1, -1):
             idx = k // factorials[i]
-            k -= idx * factorials[i]
             output.append(nums[idx])
             del nums[idx]
+            k -= idx * factorials[i]
         return "".join(output)
