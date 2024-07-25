@@ -12,3 +12,6 @@ class TestSolution(unittest.TestCase):
 
     def test_3(self):
         self.assertEqual(solution.sortArray([3, -1]), [-1, 3])
+
+    def test_4(self):
+        self.assertEqual(solution.sortArray([3, -1]), [-1, 3])
