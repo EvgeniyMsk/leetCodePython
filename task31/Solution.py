@@ -6,30 +6,19 @@ class Solution:
         n = len(nums)
         if n == 1:
             return
-        # Если массив отсортирован, то просто меняем местами
-        # два последних значения
-        if all(nums[i] <= nums[i + 1] for i in range(len(nums) - 1)):
-            nums[n - 1], nums[n - 2] = nums[n - 2], nums[n - 1]
-            return
-
-        index = n - 1
-        found = False
-        for i in range(n - 2, -1, -1):
-            index -= 1
-            if nums[i] < nums[i + 1]:
-                found = True
-                break
-        if index == 0 and not found:
-            for i in range(0, n // 2, 1):
-                nums[i], nums[n - i - 1] = nums[n - i - 1], nums[i]
-            return
-        index2 = -1
-        for i in range(n - 1, index, -1):
-            if nums[i] > nums[index]:
-                index2 = i
-                break
-        nums[index], nums[index2] = nums[index2], nums[index]
-        nums[index + 2: index2].sort()
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        if i >= 0:
+            j = n - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+        left, right = i + 1, n - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
 
 
 sol = Solution()
